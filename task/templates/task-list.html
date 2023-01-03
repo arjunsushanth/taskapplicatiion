@@ -1,0 +1,46 @@
+{%extends 'base.html'%}
+{%block body%}
+<div class="container">
+  {%if messages%}
+    <div class="">
+    <row>
+      <div class="col-4"></div>
+      <div class="col-4">
+        {%for msg in messages%}
+        {{msg}}
+        {%endfor%}
+      </div>
+      <div class="col-4"></div>
+    </row>
+  {%endif%}
+ 
+  <div class="row">
+      <div class="col-2"></div>
+      <div class="col-8">
+          <table class="table table-dark table-striped-columns">
+            <tr>
+              <th>taskname</th>
+              <th>user</th>
+              <th>date</th>
+              <th>status</th>
+              <th>action</th>
+            </tr>
+            {%for t in todos%}
+            <tr>
+              <td>{{t.task_name}}</td>
+              <td>{{t.user}}</td>
+              <td>{{t.created_date}}</td>
+              <td>{{t.status}}</td>
+              <td>
+                  <a href="{%url 'task-detail' t.id%}">view</a>
+                  <a href="{%url 'task-delete' t.id%}">delete</a>
+              </td>
+            </tr>
+            {%endfor%}
+          </table>
+      </div>
+      <div class="col-2"></div>
+  </div>
+</div>
+{%endblock%}
+
